@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import LikeTotal from './LikeTotal';
 
 const Likes = () => {
   let [totalLikes, setTotalLikes] = useState(0)
@@ -7,7 +8,21 @@ const Likes = () => {
     setTotalLikes(totalLikes + 1)
   }
 
-  return <button onClick={incrementTotalLikes}>{totalLikes}</button>
+  const decrementTotalLikes = () => {
+    if (totalLikes === 0) {
+      console.log('total likes cannot be less than 0')
+      return
+    }
+    setTotalLikes(totalLikes - 1)
+  }
+
+  return (
+    <div>
+      <LikeTotal totalLikes={totalLikes} />
+      <button onClick={incrementTotalLikes}>+</button>
+      <button onClick={decrementTotalLikes}>-</button>
+    </div>
+  )
 }
 
 export default Likes
